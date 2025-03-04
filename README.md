@@ -70,7 +70,7 @@ Or use the IP address if you found it:
 Copy the main.py into your pi using nano. 
 
 ### Step 7: Run the script!
-This should now work! 
+This should now work! - See Usage
 
 ## Usage
 You can run the script from the command line with various optional arguments.
