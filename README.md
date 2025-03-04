@@ -70,7 +70,7 @@ Or use the IP address if you found it:
 Copy the main.py into your pi using nano. 
 
 ### Step 7: Run the script!
-This should now work! - See Usage
+This should now work! 
 
 ## Usage
 You can run the script from the command line with various optional arguments.
@@ -90,3 +90,46 @@ You can run the script from the command line with various optional arguments.
 `python capture_and_send.py -i 5 -sd "/home/pi/images" -ma "user@192.168.1.100" -rd "~/received_images/"`
 
 This will capture images every 5 seconds, save them in /home/pi/images, and send them to the remote Mac's ~/received_images/ directory.
+## Setting Up SSH Key-Based Authentication
+To avoid being prompted for your password each time the script transfers an image via SCP, you can set up SSH key-based authentication. Follow the steps below to configure it:
+
+### 1.  **Generate SSH Key Pair on Your Local Machine**
+
+To generate an SSH key pair for passwordless login:
+
+1.  Open a terminal on your local machine (Raspberry Pi, or the system running the script) and type the following command:
+    
+    `ssh-keygen -t rsa -b 4096` 
+    
+2.  When prompted to "Enter file in which to save the key," press  `Enter`  to save it to the default location (`~/.ssh/id_rsa`).
+    
+3.  When prompted for a passphrase, either enter a passphrase (for extra security) or press  `Enter`  to skip it.
+    
+
+### 2.  **Copy the Public Key to Your Remote Mac**
+
+To copy your public key to the remote Mac (where the images will be transferred):
+
+1.  Use the  `ssh-copy-id`  command to copy your public key. Replace  `user@mac_ip`  with your Mac's username and IP address:
+    
+    `ssh-copy-id user@mac_ip` 
+    
+2.  You may be prompted for your Mac's password. Enter it once, and after this step, you won't need to enter it again for future SCP transfers.
+    
+
+### 3.  **Test SSH Connection**
+
+To ensure that key-based authentication works, test the SSH connection:
+
+1.  Run the following command:
+   
+    `ssh user@mac_ip` 
+    
+2.  If everything is set up correctly, it should log you in without asking for your password.
+    
+
+### Note:
+
+Ensure you  **do not**  run the script with  `sudo`  unless necessary, as  `sudo`  uses the root user, which may not have access to your SSH keys. Run the script normally:
+
+`python3 main.py` 

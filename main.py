@@ -31,16 +31,18 @@ def capture_and_send():
 
         # Capture image
         picam2.capture_file(filepath)
-        print(f"Captured {filepath}")
+        print(f"Image captured: {filepath} at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
         # Send to Mac
         os.system(f"scp {filepath} {args.ma}:{args.rd}")
-        print(f"Sent {filepath} to {args.ma}")
+        print(f"Successfully sent {filename} to {args.ma}:{args.rd}.")
 
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"Error occurred: {e} at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
 
 # Main loop
 while True:
     capture_and_send()
+    print(f"Waiting for {args.i} seconds before next capture...\n")
     time.sleep(args.i)
