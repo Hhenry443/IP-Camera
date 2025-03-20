@@ -7,8 +7,8 @@ from picamera2 import Picamera2
 # Parse command-line arguments
 parser = argparse.ArgumentParser(description="Capture images and send to a remote Mac.")
 parser.add_argument("-i", type=int, default=10, help="Time between photos in seconds.")
-parser.add_argument("-sd", type=str, default="/path/to/camera_images", help="Local directory to save images.")
-parser.add_argument("-ma", type=str, default="user@ip", help="Mac address for SCP transfer.")
+parser.add_argument("-sd", type=str, default="~/camera_images", help="Local directory to save images.")
+parser.add_argument("-ma", type=str, default="henrybarnes@192.168.0.112", help="Mac address for SCP transfer.")
 parser.add_argument("-rd", type=str, default="~/received_images/", help="Remote directory on Mac.")
 
 args = parser.parse_args()
