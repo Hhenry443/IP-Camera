@@ -7,7 +7,7 @@ from picamera2 import Picamera2
 from PIL import Image  # For image compression
 
 # API URL
-API_URL = "https://api.twist.blue/v1/images?token=1231234"
+API_URL = "Your Server URL here!"
 
 # Parse command-line arguments
 parser = argparse.ArgumentParser(description="Capture images and send to a remote server.")
